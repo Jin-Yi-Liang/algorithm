@@ -1,0 +1,18 @@
+{
+  "problemId": "LGP15967",
+  "name": "采矿文明",
+  "platform": "洛谷",
+  "category": "堆",
+  "difficulty": "普及+/提高",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 0,
+  "repetitions": 0,
+  "nextReview": "2026-04-02",
+  "lastReview": null,
+  "firstCompleted": "2026-03-28",
+  "url": "https://www.luogu.com.cn/problem/P15967",
+  "totalReviews": 0,
+  "history": [],
+  "original_folder": "LGP15967_采矿文明"
+}

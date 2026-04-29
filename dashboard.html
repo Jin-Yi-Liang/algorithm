@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithm Coach</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --card: #1a1d27;
+      --card-hover: #1f2330;
+      --border: #2a2d3a;
+      --text: #e4e4e7;
+      --muted: #71717a;
+      --accent: #6366f1;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --orange: #f97316;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    /* ─── Layout ─────────────────────────────── */
+    .main-layout {
+      display: flex;
+      gap: 20px;
+    }
+    .main-content { flex: 1; min-width: 0; }
+
+    /* ─── Sidebar Toggle ─────────────────────── */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 6px;
+      cursor: pointer;
+      z-index: 100;
+      font-size: 0.9rem;
+    }
+
+    /* ─── Category Sidebar ─────────────────────── */
+    .category-sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 0;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .sidebar.collapsed .category-sidebar { display: none; }
+    .sidebar.collapsed .main-content { width: 100%; }
+    .sidebar.collapsed .sidebar-toggle { display: block; }
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .category-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text);
+      transition: background 0.1s;
+    }
+    .category-item:hover { background: var(--card-hover); }
+    .category-item.active {
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .category-icon { font-size: 0.9rem; }
+    .category-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .category-count {
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+    .category-item.active .category-count { background: rgba(99,102,241,0.2); color: var(--accent); }
+    .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .category-all { color: var(--muted); font-size: 0.8rem; padding: 8px 16px; }
+
+    /* ─── Header ─────────────────────────────── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .header-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .header-stats {
+      display: flex;
+      gap: 20px;
+      font-size: 0.875rem;
+    }
+    .stat-item { color: var(--muted); }
+    .stat-item strong { color: var(--text); font-weight: 600; margin-left: 4px; }
+    .stat-item.overdue strong { color: var(--yellow); }
+    .stat-item.mastered strong { color: var(--green); }
+
+    /* ─── Toolbar ─────────────────────────────── */
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-input {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      outline: none;
+      min-width: 200px;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .filter-select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .filter-select:focus { border-color: var(--accent); }
+    .btn-add {
+      margin-left: auto;
+      padding: 8px 16px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .btn-add:hover { opacity: 0.85; }
+
+    /* ─── Problem Table ──────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .problem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      min-width: 700px;
+    }
+    .problem-table th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 500;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      user-select: none;
+      background: var(--card);
+    }
+    .problem-table th:hover { color: var(--text); cursor: pointer; }
+    .problem-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .problem-table tr:last-child td { border-bottom: none; }
+    .problem-table tbody tr { background: var(--card); transition: background 0.1s; }
+    .problem-table tbody tr:hover { background: var(--card-hover); }
+    .problem-table tbody tr.overdue { background: rgba(234, 179, 8, 0.05); }
+    .problem-table tbody tr.overdue:hover { background: rgba(234, 179, 8, 0.1); }
+    .pid-cell {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .name-cell {
+      max-width: 280px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .name-cell a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .name-cell a:hover { color: var(--accent); text-decoration: underline; }
+    .link-icon {
+      color: var(--accent);
+      margin-left: 6px;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+    .diff-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .diff-入门 { background: rgba(34,197,94,0.15); color: var(--green); }
+    .diff-简单 { background: rgba(59,130,246,0.15); color: var(--blue); }
+    .diff-中等 { background: rgba(249,115,22,0.15); color: var(--orange); }
+    .diff-困难 { background: rgba(239,68,68,0.15); color: var(--red); }
+    .box-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .box-1 { background: rgba(239,68,68,0.15); color: var(--red); }
+    .box-2 { background: rgba(249,115,22,0.15); color: var(--orange); }
+    .box-3 { background: rgba(234,179,8,0.15); color: var(--yellow); }
+    .box-4 { background: rgba(59,130,246,0.15); color: var(--blue); }
+    .box-5 { background: rgba(34,197,94,0.15); color: var(--green); }
+    .next-review { white-space: nowrap; }
+    .next-review.overdue { color: var(--yellow); font-weight: 600; }
+    .next-review.normal { color: var(--muted); }
+    .review-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .review-btn:hover { opacity: 0.85; }
+    .empty-row td {
+      text-align: center;
+      color: var(--muted);
+      padding: 60px;
+    }
+
+    /* ─── Review Modal ───────────────────────── */
+    #reviewModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    #reviewModal.open { display: flex; }
+    .modal-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      min-width: 360px;
+      max-width: 480px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .modal-pid {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .modal-name {
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .modal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-family: monospace;
+    }
+    .modal-link:hover { text-decoration: underline; }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+    }
+    .modal-close:hover { color: var(--text); }
+    .quality-label {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 16px 0 10px;
+    }
+    .quality-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .quality-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quality-btn.selected {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .quality-btn:hover { border-color: var(--accent); }
+    .quality-btn.wrong { border-color: var(--red); }
+    .quality-btn.wrong.selected { background: var(--red); border-color: var(--red); }
+    .modal-submit {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .modal-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .modal-submit:not(:disabled):hover { opacity: 0.85; }
+
+    /* ─── Add Problem Modal ─────────────────── */
+    #addModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    #addModal.open { display: flex; }
+    .add-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      min-width: 400px;
+      max-width: 520px;
+    }
+    .add-form h2 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .form-row input, .form-row select {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      outline: none;
+    }
+    .form-row input:focus, .form-row select:focus { border-color: var(--accent); }
+    .form-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .btn-primary {
+      flex: 1;
+      padding: 10px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      padding: 10px 16px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: var(--card-hover); }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">📚</div>
+      <div class="header-title">Algorithm Coach</div>
+    </div>
+    <div class="header-stats" id="headerStats"></div>
+  </div>
+
+  <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
+<div class="main-layout" id="mainLayout">
+  <!-- Category Sidebar -->
+  <div class="category-sidebar" id="categorySidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">知识点</span>
+    </div>
+    <div class="category-list" id="categoryList"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+  <div class="toolbar">
+    <input class="search-input" id="searchInput" placeholder="搜索题目..." oninput="applyFilters()">
+    <select class="filter-select" id="filterPlatform" onchange="applyFilters()">
+      <option value="">全部平台</option>
+    </select>
+    <select class="filter-select" id="filterDifficulty" onchange="applyFilters()">
+      <option value="">全部难度</option>
+    </select>
+    <select class="filter-select" id="filterStatus" onchange="applyFilters()">
+      <option value="">全部状态</option>
+      <option value="overdue">逾期</option>
+      <option value="due">今日待复习</option>
+      <option value="learning">学习中</option>
+      <option value="mastered">已掌握</option>
+    </select>
+    <button class="btn-add" onclick="openAddModal()">+ 添加题目</button>
+  </div>
+
+  <!-- Problem Table -->
+  <div class="table-wrap">
+    <table class="problem-table">
+      <thead>
+        <tr>
+          <th onclick="sortBy('problemId')">PID</th>
+          <th onclick="sortBy('name')">题目</th>
+          <th onclick="sortBy('platform')">平台</th>
+          <th onclick="sortBy('difficulty')">难度</th>
+          <th onclick="sortBy('leitnerBox')">状态</th>
+          <th onclick="sortBy('nextReview')">下次复习</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="problems-tbody"></tbody>
+    </table>
+  </div></div></div>
+
+  <!-- Review Modal -->
+  <div id="reviewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <div class="modal-pid" id="modal-pid"></div>
+          <div class="modal-name" id="modal-name"></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="quality-label">这次复习的感受如何？</div>
+      <div class="quality-row" id="qualityRow"></div>
+      <button class="modal-submit" id="submitReview" disabled onclick="submitReview()">提交评分</button>
+    </div>
+  </div>
+
+  <!-- Add Problem Modal -->
+  <div id="addModal">
+    <div class="add-form">
+      <h2>添加题目</h2>
+      <div class="form-row">
+        <input id="add-pid" placeholder="题目ID (如 LC209)">
+        <input id="add-name" placeholder="题目名称">
+      </div>
+      <div class="form-row">
+        <select id="add-platform">
+          <option value="LeetCode">LeetCode</option>
+          <option value="洛谷">洛谷</option>
+          <option value="PTA">PTA</option>
+          <option value="Codeforces">Codeforces</option>
+          <option value="牛客网">牛客网</option>
+        </select>
+        <input id="add-category" placeholder="分类标签 (如 前缀和+差分)">
+      </div>
+      <div class="form-row">
+        <select id="add-difficulty">
+          <option value="入门">入门</option>
+          <option value="简单">简单</option>
+          <option value="中等">中等</option>
+          <option value="困难">困难</option>
+        </select>
+        <input id="add-url" placeholder="题目链接 (选填)">
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="closeAddModal()">取消</button>
+        <button class="btn-primary" onclick="submitAdd()">添加</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+// ─── State ─────────────────────────────────────────────────────────
+let allProblems = [];
+let selectedQuality = null;
+let currentReviewProblem = null;
+let selectedCategory = '';
+let sortField = 'problemId';
+let sortDir = 1;
+const todayStr = new Date().toISOString().split('T')[0];
+
+const DIFF_ORDER = { '入门': 1, '简单': 2, '中等': 3, '困难': 4 };
+const BOX_LABELS = { 1: 'L1 新学', 2: 'L2 复习', 3: 'L3 强化', 4: 'L4 巩固', 5: 'L5 掌握' };
+
+// ─── Init ──────────────────────────────────────────────────────────
+async function init() {
+  await reload();
+}
+
+async function reload() {
+  const [problems, stats] = await Promise.all([
+    fetchJSON('/api/problems'),
+    fetchJSON('/api/stats')
+  ]);
+  allProblems = problems;
+  renderStats(stats);
+  populateFilters();
+  renderCategorySidebar();
+  applyFilters();
+}
+
+// ─── Stats ─────────────────────────────────────────────────────────
+function renderStats(stats) {
+  const overdue = stats.overdue || 0;
+  const mastered = stats.mastered || 0;
+  const total = stats.total || 0;
+  document.getElementById('headerStats').innerHTML = `
+    <div class="stat-item">总题数<strong>${total}</strong></div>
+    <div class="stat-item overdue">逾期<strong>${overdue}</strong></div>
+    <div class="stat-item mastered">已掌握<strong>${mastered}</strong></div>
+  `;
+}
+
+// ─── Filters ───────────────────────────────────────────────────────
+function populateFilters() {
+  // Platform
+  const platforms = [...new Set(allProblems.map(p => p.platform))].sort();
+  const platSel = document.getElementById('filterPlatform');
+  platSel.innerHTML = '<option value="">全部平台</option>' +
+    platforms.map(p => `<option value="${p}">${p}</option>`).join('');
+
+  // Difficulty
+  const diffs = [...new Set(allProblems.map(p => p.difficulty))].sort((a, b) => (DIFF_ORDER[a] || 99) - (DIFF_ORDER[b] || 99));
+  const diffSel = document.getElementById('filterDifficulty');
+  diffSel.innerHTML = '<option value="">全部难度</option>' +
+    diffs.map(d => `<option value="${d}">${d}</option>`).join('');
+}
+
+function applyFilters() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const platform = document.getElementById('filterPlatform').value;
+  const difficulty = document.getElementById('filterDifficulty').value;
+  const status = document.getElementById('filterStatus').value;
+
+  let filtered = allProblems.filter(p => {
+    if (search && !p.problemId.toLowerCase().includes(search) && !p.name.toLowerCase().includes(search)) return false;
+    if (platform && p.platform !== platform) return false;
+    if (difficulty && p.difficulty !== difficulty) return false;
+    if (selectedCategory && !p.category.includes(selectedCategory)) return false;
+    if (status === 'overdue' && p.nextReview >= todayStr) return false;
+    if (status === 'due' && p.nextReview !== todayStr) return false;
+    if (status === 'learning' && (p.leitnerBox < 2 || p.leitnerBox > 4)) return false;
+    if (status === 'mastered' && p.leitnerBox !== 5) return false;
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    let av, bv;
+    if (sortField === 'difficulty') {
+      av = DIFF_ORDER[a.difficulty] || 99;
+      bv = DIFF_ORDER[b.difficulty] || 99;
+    } else {
+      av = a[sortField] || '';
+      bv = b[sortField] || '';
+    }
+    return av < bv ? -sortDir : av > bv ? sortDir : 0;
+  });
+
+  renderTable(filtered);
+}
+
+// ─── Category Sidebar ─────────────────────────────────────────────
+function renderCategorySidebar() {
+  const categories = {};
+  allProblems.forEach(p => {
+    (p.category || []).forEach(tag => {
+      if (!categories[tag]) categories[tag] = 0;
+      categories[tag]++;
+    });
+  });
+
+  const CATEGORY_ORDER = [
+    '前缀和', '差分', '滑动窗口', '二分',
+    '搜索', '图论', '最短路', '拓扑排序', '最小生成树', 'DFS',
+    '并查集', '贪心', '堆', '模拟', '字符串', '数论', '矩阵', '位运算'
+  ];
+  const sorted = Object.entries(categories).sort((a, b) => {
+    const ai = CATEGORY_ORDER.indexOf(a[0]);
+    const bi = CATEGORY_ORDER.indexOf(b[0]);
+    if (ai === -1 && bi === -1) return a[0].localeCompare(b[0]);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+  const list = document.getElementById('categoryList');
+
+  let html = `<div class="category-item ${selectedCategory === '' ? 'active' : ''}" onclick="selectCategory('')">
+    <span class="category-icon">📋</span>
+    <span class="category-name">全部</span>
+    <span class="category-count">${allProblems.length}</span>
+  </div>`;
+
+  sorted.forEach(([cat, count]) => {
+    const active = selectedCategory === cat ? ' active' : '';
+    html += `<div class="category-item${active}" onclick="selectCategory('${cat.replace(/'/g, "\\'")}')">
+      <span class="category-icon">📁</span>
+      <span class="category-name">${cat}</span>
+      <span class="category-count">${count}</span>
+    </div>`;
+  });
+
+  list.innerHTML = html;
+}
+
+function selectCategory(cat) {
+  selectedCategory = cat;
+  renderCategorySidebar();
+  applyFilters();
+}
+
+function toggleSidebar() {
+  document.getElementById('mainLayout').classList.toggle('collapsed');
+}
+
+function sortBy(field) {
+  if (sortField === field) sortDir *= -1;
+  else { sortField = field; sortDir = 1; }
+  applyFilters();
+}
+
+// ─── Table ─────────────────────────────────────────────────────────
+function renderTable(problems) {
+  const tbody = document.getElementById('problems-tbody');
+  if (problems.length === 0) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">无匹配题目</td></tr>';
+    return;
+  }
+  tbody.innerHTML = problems.map(p => {
+    const overdue = p.nextReview < todayStr;
+    const dateClass = overdue ? 'overdue' : 'normal';
+    const rowClass = overdue ? 'overdue' : '';
+    return `
+      <tr class="${rowClass}">
+        <td class="pid-cell">${p.problemId}</td>
+        <td class="name-cell">
+          ${p.name}
+          ${p.url ? `<a class="link-icon" href="${p.url}" target="_blank" title="跳转">🔗</a>` : ''}
+        </td>
+        <td>${p.platform}</td>
+        <td><span class="diff-badge diff-${p.difficulty}">${p.difficulty}</span></td>
+        <td><span class="box-badge box-${p.leitnerBox}">${BOX_LABELS[p.leitnerBox]}</span></td>
+        <td class="next-review ${dateClass}">${p.nextReview || '-'}</td>
+        <td><button class="review-btn" onclick="openReview('${p.problemId}')">复习</button></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// ─── Review Modal ───────────────────────────────────────────────────
+function openReview(problemId) {
+  const p = allProblems.find(x => x.problemId === problemId);
+  if (!p) return;
+
+  currentReviewProblem = p;
+  selectedQuality = null;
+  document.getElementById('modal-pid').textContent = p.problemId;
+  document.getElementById('modal-name').textContent = '';
+  const nameEl = document.getElementById('modal-name');
+  const textNode = document.createTextNode(p.name);
+  nameEl.appendChild(textNode);
+  if (p.url) {
+    const link = document.createElement('a');
+    link.className = 'modal-link';
+    link.href = p.url;
+    link.target = '_blank';
+    link.textContent = '🔗 跳转';
+    nameEl.appendChild(link);
+  }
+
+  // Quality buttons
+  const row = document.getElementById('qualityRow');
+  row.innerHTML = '';
+  for (let q = 0; q <= 5; q++) {
+    const btn = document.createElement('button');
+    btn.className = 'quality-btn' + (q < 3 ? ' wrong' : '');
+    btn.textContent = q;
+    btn.onclick = () => selectQuality(q);
+    row.appendChild(btn);
+  }
+
+  document.getElementById('submitReview').disabled = true;
+  document.getElementById('reviewModal').classList.add('open');
+}
+
+function selectQuality(q) {
+  selectedQuality = q;
+  document.querySelectorAll('.quality-btn').forEach((b, i) => {
+    b.classList.toggle('selected', i === q);
+  });
+  document.getElementById('submitReview').disabled = false;
+}
+
+function closeModal() {
+  document.getElementById('reviewModal').classList.remove('open');
+  currentReviewProblem = null;
+  selectedQuality = null;
+}
+
+async function submitReview() {
+  if (!currentReviewProblem || selectedQuality === null) return;
+  const btn = document.getElementById('submitReview');
+  btn.disabled = true; btn.textContent = '提交中...';
+  try {
+    await fetchJSON('/api/review', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ problemId: currentReviewProblem.problemId, quality: selectedQuality })
+    });
+    closeModal();
+    await reload();
+  } catch(e) {
+    alert('提交失败: ' + e);
+    btn.disabled = false; btn.textContent = '提交评分';
+  }
+}
+
+// ─── Add Problem ────────────────────────────────────────────────────
+function openAddModal() {
+  document.getElementById('addModal').classList.add('open');
+}
+
+function closeAddModal() {
+  document.getElementById('addModal').classList.remove('open');
+  document.getElementById('add-pid').value = '';
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-category').value = '';
+  document.getElementById('add-url').value = '';
+}
+
+async function submitAdd() {
+  const pid = document.getElementById('add-pid').value.trim();
+  const name = document.getElementById('add-name').value.trim();
+  const platform = document.getElementById('add-platform').value;
+  const category = document.getElementById('add-category').value.trim();
+  const difficulty = document.getElementById('add-difficulty').value;
+  const url = document.getElementById('add-url').value.trim();
+
+  if (!pid || !name) { alert('题目ID和名称不能为空'); return; }
+
+  try {
+    await fetchJSON('/api/problems', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ problemId: pid, name, platform, category, difficulty, url })
+    });
+    closeAddModal();
+    await reload();
+  } catch(e) {
+    alert('添加失败: ' + e);
+  }
+}
+
+// ─── Helpers ────────────────────────────────────────────────────────
+async function fetchJSON(url, opts) {
+  const res = await fetch(url, opts);
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+// ─── Boot ───────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

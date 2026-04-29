@@ -1,0 +1,25 @@
+{
+  "problemId": "CF2200C",
+  "name": "Minimize the Length of the String",
+  "platform": "Codeforces",
+  "category": "贪心",
+  "difficulty": "",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-03",
+  "lastReview": "2026-03-25",
+  "firstCompleted": "2026-03-24",
+  "url": "https://codeforces.com/contest/2200/problem/C",
+  "totalReviews": 1,
+  "history": [
+    {
+      "date": "2026-03-25",
+      "quality": 2,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "CF2200C_Minimize the Length of the String"
+}

@@ -1,0 +1,28 @@
+{
+  "problemId": "LC1584",
+  "name": "连接所有点的最小成本",
+  "platform": "LeetCode",
+  "category": [
+    "图论",
+    "最小生成树"
+  ],
+  "difficulty": "中等",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-05",
+  "lastReview": "2026-03-31",
+  "firstCompleted": "2026-03-02",
+  "url": "https://leetcode.cn/problems/min-cost-to-connect-all-points/description/",
+  "totalReviews": 4,
+  "history": [
+    {
+      "date": "2026-03-31",
+      "quality": 0,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "LC1584_连接所有点的最小成本"
+}

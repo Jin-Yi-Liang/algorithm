@@ -1,0 +1,110 @@
+# 算法刷题复习系统 - Kubernetes 部署配置
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: algorithm-data-pvc
+  labels:
+    app: algorithm-review
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  # 如果需要特定 storageClass，取消下面的注释
+  # storageClassName: your-storage-class
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: algorithm-review
+  labels:
+    app: algorithm-review
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: algorithm-review
+  template:
+    metadata:
+      labels:
+        app: algorithm-review
+    spec:
+      containers:
+        - name: algorithm-review
+          # 替换为你的 Docker Hub 用户名，例如: michael/algorithm-review:latest
+          image: your-dockerhub-username/algorithm-review:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            # 可选：配置端口号
+            - name: PORT
+              value: "8080"
+          volumeMounts:
+            # 挂载数据卷，保证数据持久化
+            - name: data-volume
+              mountPath: /app/problems
+              subPath: problems
+            - name: data-volume
+              mountPath: /app/notes
+              subPath: notes
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /dashboard
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /dashboard
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: algorithm-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: algorithm-review-service
+  labels:
+    app: algorithm-review
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: algorithm-review
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: algorithm-review-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: algorithm.local  # 替换为你的域名
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: algorithm-review-service
+                port:
+                  number: 80

@@ -1,0 +1,27 @@
+{
+  "problemId": "P1591",
+  "name": "阶乘数码",
+  "platform": "洛谷",
+  "category": [
+    "高精度"
+  ],
+  "difficulty": "简单",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-28",
+  "lastReview": "2026-04-27",
+  "firstCompleted": "2026-04-27",
+  "url": "https://www.luogu.com.cn/problem/P1591",
+  "totalReviews": 1,
+  "history": [
+    {
+      "date": "2026-04-27",
+      "quality": 1,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "P1591_阶乘数码"
+}

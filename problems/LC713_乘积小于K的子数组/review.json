@@ -1,0 +1,18 @@
+{
+  "problemId": "LC713",
+  "name": "乘积小于K的子数组",
+  "platform": "LeetCode",
+  "category": "滑动窗口",
+  "difficulty": "中等",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-03",
+  "lastReview": null,
+  "firstCompleted": "2026-03-30",
+  "url": "https://leetcode.cn/problems/subarray-product-less-than-k/description/",
+  "totalReviews": 0,
+  "history": [],
+  "original_folder": "LC713_乘积小于K的子数组"
+}

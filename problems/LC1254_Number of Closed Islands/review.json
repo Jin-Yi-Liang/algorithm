@@ -1,0 +1,31 @@
+{
+  "problemId": "LC1254",
+  "name": "Number of Closed Islands",
+  "platform": "LeetCode",
+  "category": "搜索",
+  "difficulty": "中等",
+  "leitnerBox": 3,
+  "easeFactor": 2.5,
+  "interval": 3,
+  "repetitions": 2,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-03-24",
+  "firstCompleted": "2026-03-23",
+  "url": "https://leetcode.cn/problems/number-of-closed-islands/",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-24",
+      "quality": 4,
+      "box": 2,
+      "interval": 1
+    },
+    {
+      "date": "2026-03-24",
+      "quality": 4,
+      "box": 3,
+      "interval": 3
+    }
+  ],
+  "original_folder": "LC1254_Number of Closed Islands"
+}

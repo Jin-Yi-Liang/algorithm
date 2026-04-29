@@ -1,0 +1,31 @@
+{
+  "problemId": "CF1912L",
+  "name": "LOL Lovers",
+  "platform": "Codeforces",
+  "category": "前缀和",
+  "difficulty": "困难",
+  "leitnerBox": 3,
+  "easeFactor": 2.6,
+  "interval": 3,
+  "repetitions": 2,
+  "nextReview": "2026-04-03",
+  "lastReview": "2026-03-31",
+  "firstCompleted": "2026-03-30",
+  "url": "https://codeforces.com/problemset/problem/1912/L",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-30",
+      "quality": 5,
+      "box": 2,
+      "interval": 1
+    },
+    {
+      "date": "2026-03-31",
+      "quality": 4,
+      "box": 3,
+      "interval": 3
+    }
+  ],
+  "original_folder": "CF1912L_CF1912L"
+}

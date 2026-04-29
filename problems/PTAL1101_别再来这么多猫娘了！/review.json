@@ -1,0 +1,31 @@
+{
+  "problemId": "PTAL1101",
+  "name": "别再来这么多猫娘了！",
+  "platform": "PTA",
+  "category": "字符串",
+  "difficulty": "简单",
+  "leitnerBox": 1,
+  "easeFactor": 2.36,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-05",
+  "lastReview": "2026-03-25",
+  "firstCompleted": "2026-03-25",
+  "url": "https://pintia.cn/problem-sets/994805046380707840/exam/problems/type/7?problemSetProblemId=1781658570803388420&page=1",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-25",
+      "quality": 3,
+      "box": 2,
+      "interval": 1
+    },
+    {
+      "date": "2026-03-25",
+      "quality": 2,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "PTAL1101_别再来这么多猫娘了！"
+}

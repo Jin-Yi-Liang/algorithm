@@ -1,0 +1,25 @@
+{
+  "problemId": "LC802",
+  "name": "找到最终的安全状态",
+  "platform": "LeetCode",
+  "category": "拓扑排序",
+  "difficulty": "中等",
+  "leitnerBox": 5,
+  "easeFactor": 2.6,
+  "interval": 78,
+  "repetitions": 15,
+  "nextReview": "2026-06-16",
+  "lastReview": "2026-03-30",
+  "firstCompleted": "2026-03-05",
+  "url": "https://leetcode.cn/problems/find-eventual-safe-states/",
+  "totalReviews": 15,
+  "history": [
+    {
+      "date": "2026-03-30",
+      "quality": 5,
+      "box": 5,
+      "interval": 78
+    }
+  ],
+  "original_folder": "LC802_找到最终的安全状态"
+}

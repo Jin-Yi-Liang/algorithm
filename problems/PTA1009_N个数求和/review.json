@@ -1,0 +1,25 @@
+{
+  "problemId": "PTA1009",
+  "name": "N个数求和",
+  "platform": "PTA",
+  "category": "模拟",
+  "difficulty": "基础题",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-04",
+  "lastReview": "2026-03-23",
+  "firstCompleted": "2026-03-23",
+  "url": "https://pintia.cn/problem-sets/994805046380707840/exam/problems/type/7?problemSetProblemId=994805133597065216",
+  "totalReviews": 1,
+  "history": [
+    {
+      "date": "2026-03-23",
+      "quality": 2,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "PTA1009_N个数求和"
+}

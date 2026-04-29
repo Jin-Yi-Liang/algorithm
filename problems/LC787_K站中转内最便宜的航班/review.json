@@ -1,0 +1,28 @@
+{
+  "problemId": "LC787",
+  "name": "K站中转内最便宜的航班",
+  "platform": "LeetCode",
+  "category": [
+    "图论",
+    "最短路"
+  ],
+  "difficulty": "困难",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-04-01",
+  "firstCompleted": "2026-03-05",
+  "url": "https://leetcode.cn/problems/cheapest-flights-within-k-stops/description/",
+  "totalReviews": 9,
+  "history": [
+    {
+      "date": "2026-04-01",
+      "quality": 0,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "LC787_K站中转内最便宜的航班"
+}

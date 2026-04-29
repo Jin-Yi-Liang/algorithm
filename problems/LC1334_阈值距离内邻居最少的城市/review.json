@@ -1,0 +1,28 @@
+{
+  "problemId": "LC1334",
+  "name": "阈值距离内邻居最少的城市",
+  "platform": "LeetCode",
+  "category": [
+    "图论",
+    "最短路"
+  ],
+  "difficulty": "中等",
+  "leitnerBox": 5,
+  "easeFactor": 2.5,
+  "interval": 35,
+  "repetitions": 5,
+  "nextReview": "2026-04-30",
+  "lastReview": "2026-03-26",
+  "firstCompleted": "2026-03-06",
+  "url": "https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/",
+  "totalReviews": 5,
+  "history": [
+    {
+      "date": "2026-03-26",
+      "quality": 4,
+      "box": 5,
+      "interval": 35
+    }
+  ],
+  "original_folder": "LC1334_阈值距离内邻居最少的城市"
+}

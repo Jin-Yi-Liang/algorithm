@@ -1,0 +1,28 @@
+{
+  "problemId": "LG1119",
+  "name": "灾后重建",
+  "platform": "洛谷",
+  "category": [
+    "图论",
+    "最短路"
+  ],
+  "difficulty": "普及+/提高",
+  "leitnerBox": 2,
+  "easeFactor": 2.5,
+  "interval": 3,
+  "repetitions": 2,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-03-26",
+  "firstCompleted": "2026-03-09",
+  "url": "https://www.luogu.com.cn/problem/P1119",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-26",
+      "quality": 4,
+      "box": 2,
+      "interval": 3
+    }
+  ],
+  "original_folder": "LG1119_灾后重建"
+}

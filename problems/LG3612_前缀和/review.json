@@ -1,0 +1,37 @@
+{
+  "problemId": "LG3612",
+  "name": "前缀和",
+  "platform": "洛谷",
+  "category": "前缀和",
+  "difficulty": "",
+  "leitnerBox": 4,
+  "easeFactor": 2.7,
+  "interval": 14,
+  "repetitions": 3,
+  "nextReview": "2026-04-15",
+  "lastReview": "2026-04-01",
+  "firstCompleted": "2026-03-24",
+  "url": "https://www.luogu.com.cn/problem/B3612",
+  "totalReviews": 3,
+  "history": [
+    {
+      "date": "2026-03-24",
+      "quality": 5,
+      "box": 2,
+      "interval": 1
+    },
+    {
+      "date": "2026-03-25",
+      "quality": 4,
+      "box": 3,
+      "interval": 3
+    },
+    {
+      "date": "2026-04-01",
+      "quality": 5,
+      "box": 4,
+      "interval": 14
+    }
+  ],
+  "original_folder": "LG3612_前缀和"
+}

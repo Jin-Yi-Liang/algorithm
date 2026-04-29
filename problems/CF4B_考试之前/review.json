@@ -1,0 +1,25 @@
+{
+  "problemId": "CF4B",
+  "name": "考试之前",
+  "platform": "Codeforces",
+  "category": "贪心",
+  "difficulty": "简单",
+  "leitnerBox": 2,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 1,
+  "nextReview": "2026-04-03",
+  "lastReview": "2026-03-30",
+  "firstCompleted": "2026-03-30",
+  "url": "https://codeforces.com/problemset/problem/4/B",
+  "totalReviews": 1,
+  "history": [
+    {
+      "date": "2026-03-30",
+      "quality": 4,
+      "box": 2,
+      "interval": 1
+    }
+  ],
+  "original_folder": "CF4B_考试之前"
+}

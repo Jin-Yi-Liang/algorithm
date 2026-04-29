@@ -1,0 +1,25 @@
+{
+  "problemId": "LGP3397",
+  "name": "地毯",
+  "platform": "洛谷",
+  "category": "差分",
+  "difficulty": "普及+/提高",
+  "leitnerBox": 2,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 1,
+  "nextReview": "2026-04-05",
+  "lastReview": "2026-03-25",
+  "firstCompleted": "2026-03-25",
+  "url": "https://www.luogu.com.cn/problem/P3397",
+  "totalReviews": 1,
+  "history": [
+    {
+      "date": "2026-03-25",
+      "quality": 4,
+      "box": 2,
+      "interval": 1
+    }
+  ],
+  "original_folder": "LGP3397_地毯"
+}

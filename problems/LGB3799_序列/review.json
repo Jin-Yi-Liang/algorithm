@@ -1,0 +1,21 @@
+{
+  "problemId": "LGB3799",
+  "name": "序列",
+  "platform": "洛谷",
+  "category": [
+    "前缀和",
+    "二分"
+  ],
+  "difficulty": "普及+/提高",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 0,
+  "repetitions": 0,
+  "nextReview": "2026-04-13",
+  "lastReview": null,
+  "firstCompleted": null,
+  "url": "https://www.luogu.com.cn/problem/B3799",
+  "totalReviews": 0,
+  "history": [],
+  "original_folder": "LGB3799_序列"
+}

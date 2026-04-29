@@ -1,0 +1,28 @@
+{
+  "problemId": "LG4779",
+  "name": "单源最短路径",
+  "platform": "洛谷",
+  "category": [
+    "图论",
+    "最短路"
+  ],
+  "difficulty": "普及+/提高",
+  "leitnerBox": 2,
+  "easeFactor": 2.6,
+  "interval": 3,
+  "repetitions": 2,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-03-30",
+  "firstCompleted": "2026-03-08",
+  "url": "https://www.luogu.com.cn/problem/P4779",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-30",
+      "quality": 5,
+      "box": 2,
+      "interval": 3
+    }
+  ],
+  "original_folder": "LG4779_单源最短路径"
+}

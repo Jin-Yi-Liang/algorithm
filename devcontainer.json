@@ -1,0 +1,19 @@
+{
+  "name": "Algorithm Review",
+  "image": "algorithm-review:latest",
+  "remoteEnv": {
+    "PORT": "8080"
+  },
+  "forwardPorts": [8080],
+  "overrideCommand": false,
+  "containerEnv": {
+    "IMAGE": "algorithm-review:latest"
+  },
+  "mounts": [
+    "source=algorithm-data,target=/app/problems,type=volume",
+    "source=algorithm-notes,target=/app/notes,type=volume"
+  ],
+  "postStartCommand": [
+    "python", "/app/server.py"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "problemId": "LC841",
+  "name": "钥匙和房间",
+  "platform": "LeetCode",
+  "category": "搜索",
+  "difficulty": "简单",
+  "leitnerBox": 5,
+  "easeFactor": 2.5,
+  "interval": 30,
+  "repetitions": 7,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-03-06",
+  "firstCompleted": "2026-03-06",
+  "url": "https://leetcode.cn/problems/841/",
+  "totalReviews": 7,
+  "history": [],
+  "original_folder": "LC841_钥匙和房间"
+}

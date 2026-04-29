@@ -1,0 +1,18 @@
+{
+  "problemId": "LC547",
+  "name": "省份数量",
+  "platform": "LeetCode",
+  "category": "图论",
+  "difficulty": "中等",
+  "leitnerBox": 5,
+  "easeFactor": 2.5,
+  "interval": 30,
+  "repetitions": 16,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-03-05",
+  "firstCompleted": "2026-03-05",
+  "url": "https://leetcode.cn/problems/547/",
+  "totalReviews": 16,
+  "history": [],
+  "original_folder": "LC547_省份数量"
+}

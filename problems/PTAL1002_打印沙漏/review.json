@@ -1,0 +1,31 @@
+{
+  "problemId": "PTAL1002",
+  "name": "打印沙漏",
+  "platform": "PTA",
+  "category": "搜索",
+  "difficulty": "简单",
+  "leitnerBox": 1,
+  "easeFactor": 2.36,
+  "interval": 1,
+  "repetitions": 0,
+  "nextReview": "2026-04-05",
+  "lastReview": "2026-03-25",
+  "firstCompleted": "2026-03-25",
+  "url": "https://pintia.cn/problem-sets/994805046380707840/exam/problems/type/7?problemSetProblemId=994805145370476544",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-25",
+      "quality": 3,
+      "box": 2,
+      "interval": 1
+    },
+    {
+      "date": "2026-03-25",
+      "quality": 2,
+      "box": 1,
+      "interval": 1
+    }
+  ],
+  "original_folder": "PTAL1002_打印沙漏"
+}

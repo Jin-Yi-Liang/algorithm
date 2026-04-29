@@ -1,0 +1,31 @@
+{
+  "problemId": "LGP8218",
+  "name": "前缀和",
+  "platform": "洛谷",
+  "category": "前缀和",
+  "difficulty": "入门",
+  "leitnerBox": 3,
+  "easeFactor": 2.7,
+  "interval": 3,
+  "repetitions": 2,
+  "nextReview": "2026-04-02",
+  "lastReview": "2026-03-26",
+  "firstCompleted": "2026-03-25",
+  "url": "https://www.luogu.com.cn/problem/P8218",
+  "totalReviews": 2,
+  "history": [
+    {
+      "date": "2026-03-25",
+      "quality": 5,
+      "box": 2,
+      "interval": 1
+    },
+    {
+      "date": "2026-03-26",
+      "quality": 5,
+      "box": 3,
+      "interval": 3
+    }
+  ],
+  "original_folder": "LGP8218_前缀和"
+}

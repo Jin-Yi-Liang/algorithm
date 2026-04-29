@@ -1,0 +1,25 @@
+{
+  "problemId": "PTAL3-003",
+  "name": "社交集群",
+  "platform": "PTA",
+  "category": "并查集",
+  "difficulty": "L3",
+  "leitnerBox": 2,
+  "easeFactor": 2.5,
+  "interval": 1,
+  "repetitions": 1,
+  "nextReview": "2026-04-06",
+  "lastReview": "2026-03-25",
+  "firstCompleted": "2026-03-25",
+  "url": "https://www.luogu.com.cn/problem/PTAL3-003",
+  "totalReviews": 1,
+  "history": [
+    {
+      "date": "2026-03-25",
+      "quality": 4,
+      "box": 2,
+      "interval": 1
+    }
+  ],
+  "original_folder": "PTAL3-003_社交集群"
+}

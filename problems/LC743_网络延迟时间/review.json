@@ -1,0 +1,28 @@
+{
+  "problemId": "LC743",
+  "name": "网络延迟时间",
+  "platform": "LeetCode",
+  "category": [
+    "图论",
+    "最短路"
+  ],
+  "difficulty": "中等",
+  "leitnerBox": 5,
+  "easeFactor": 2.5,
+  "interval": 35,
+  "repetitions": 5,
+  "nextReview": "2026-05-04",
+  "lastReview": "2026-03-30",
+  "firstCompleted": "2026-03-06",
+  "url": "https://leetcode.cn/problems/network-delay-time/description/",
+  "totalReviews": 5,
+  "history": [
+    {
+      "date": "2026-03-30",
+      "quality": 4,
+      "box": 5,
+      "interval": 35
+    }
+  ],
+  "original_folder": "LC743_网络延迟时间"
+}

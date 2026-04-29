@@ -1,0 +1,28 @@
+{
+  "problemId": "LC1514",
+  "name": "最大概率路径",
+  "platform": "LeetCode",
+  "category": [
+    "图论",
+    "最短路"
+  ],
+  "difficulty": "中等",
+  "leitnerBox": 5,
+  "easeFactor": 2.5,
+  "interval": 35,
+  "repetitions": 5,
+  "nextReview": "2026-05-05",
+  "lastReview": "2026-03-31",
+  "firstCompleted": "2026-03-03",
+  "url": "https://leetcode.cn/problems/path-with-maximum-probability/",
+  "totalReviews": 5,
+  "history": [
+    {
+      "date": "2026-03-31",
+      "quality": 4,
+      "box": 5,
+      "interval": 35
+    }
+  ],
+  "original_folder": "LC1514_最大概率路径"
+}
