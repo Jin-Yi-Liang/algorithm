@@ -1,0 +1,5 @@
+{
+    "cmake.configureArgs": [
+        "-DFETCHCONTENT_UPDATES_DISCONNECTED=ON"
+    ]
+}

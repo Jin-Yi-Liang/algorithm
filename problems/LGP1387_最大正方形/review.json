@@ -7,15 +7,15 @@
     "差分"
   ],
   "difficulty": "普及/提高-",
-  "leitnerBox": 1,
-  "easeFactor": 2.5,
+  "leitnerBox": 2,
+  "easeFactor": 2.6,
   "interval": 1,
-  "repetitions": 0,
-  "nextReview": "2026-04-05",
-  "lastReview": "2026-03-26",
-  "firstCompleted": "2026-03-25",
+  "repetitions": 1,
+  "nextReview": "2026-05-06",
+  "lastReview": "2026-05-05",
+  "firstCompleted": "2026-05-05",
   "url": "https://www.luogu.com.cn/problem/P1387",
-  "totalReviews": 2,
+  "totalReviews": 3,
   "history": [
     {
       "date": "2026-03-25",
@@ -27,6 +27,12 @@
       "date": "2026-03-26",
       "quality": 2,
       "box": 1,
+      "interval": 1
+    },
+    {
+      "date": "2026-05-05",
+      "quality": 5,
+      "box": 2,
       "interval": 1
     }
   ],

@@ -1,0 +1,20 @@
+{
+  "problemId": "P1090",
+  "name": "[NOIP 2004 提高组] 合并果子",
+  "platform": "洛谷",
+  "category": [
+    "贪心"
+  ],
+  "difficulty": "简单",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 0,
+  "repetitions": 0,
+  "nextReview": "2026-05-07",
+  "lastReview": null,
+  "firstCompleted": "2026-05-07",
+  "url": "https://www.luogu.com.cn/problem/P1090",
+  "totalReviews": 0,
+  "history": [],
+  "original_folder": ""
+}

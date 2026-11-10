@@ -1,0 +1,20 @@
+{
+  "problemId": "P2240",
+  "name": "【深基12.例1】部分背包问题",
+  "platform": "洛谷",
+  "category": [
+    "贪心"
+  ],
+  "difficulty": "简单",
+  "leitnerBox": 1,
+  "easeFactor": 2.5,
+  "interval": 0,
+  "repetitions": 0,
+  "nextReview": "2026-05-07",
+  "lastReview": null,
+  "firstCompleted": "2026-05-07",
+  "url": "https://www.luogu.com.cn/problem/P2240",
+  "totalReviews": 0,
+  "history": [],
+  "original_folder": ""
+}
